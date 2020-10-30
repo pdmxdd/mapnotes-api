@@ -33,6 +33,23 @@ dependencies {
 	}
 }
 
+task startTestServices(type: Exec) {
+  workingDir '.'
+  commandLine 'docker-compose', '--env-file', '.test.env', 'up', '-d'
+}
+
+task stopTestServices(type: Exec) {
+  workingDir '.'
+  commandLine 'docker-compose', '--env-file', '.test.env', 'down'
+}
+
+task loadEnv(type: Exec) {
+  // TODO: load the env into system properties
+}
+
 test {
 	useJUnitPlatform()
 }
+
+test.dependsOn(startTestServices)
+test.finalizedBy(stopTestServices)

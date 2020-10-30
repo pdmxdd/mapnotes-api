@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.launchcode.devops.mapnotesapi.models.dtos.InboundNoteData;
-import org.launchcode.devops.mapnotesapi.models.dtos.OutboundNoteData;
+import org.launchcode.devops.mapnotesapi.models.Note.InboundNoteData;
+import org.launchcode.devops.mapnotesapi.models.Note.Note;
+import org.launchcode.devops.mapnotesapi.models.Note.OutboundNoteData;
 
 public class NoteTest {
   @Test

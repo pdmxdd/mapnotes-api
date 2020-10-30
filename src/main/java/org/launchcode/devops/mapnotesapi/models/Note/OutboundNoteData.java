@@ -1,6 +1,4 @@
-package org.launchcode.devops.mapnotesapi.models.dtos;
-
-import org.launchcode.devops.mapnotesapi.models.Note;
+package org.launchcode.devops.mapnotesapi.models.Note;
 
 import lombok.Data;
 

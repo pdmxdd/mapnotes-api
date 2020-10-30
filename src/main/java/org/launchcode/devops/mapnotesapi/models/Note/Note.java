@@ -1,14 +1,11 @@
-package org.launchcode.devops.mapnotesapi.models;
+package org.launchcode.devops.mapnotesapi.models.Note;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.launchcode.devops.mapnotesapi.models.dtos.InboundNoteData;
-import org.launchcode.devops.mapnotesapi.models.dtos.OutboundNoteData;
-
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter

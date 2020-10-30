@@ -1,4 +1,4 @@
-package org.launchcode.devops.mapnotesapi.models.dtos;
+package org.launchcode.devops.mapnotesapi.models.Note;
 
 import javax.validation.constraints.Size;
 

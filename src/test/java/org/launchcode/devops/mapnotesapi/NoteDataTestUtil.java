@@ -1,10 +1,5 @@
 package org.launchcode.devops.mapnotesapi;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.stream.Collector;
-
 import org.launchcode.devops.mapnotesapi.data.NoteData;
 import org.launchcode.devops.mapnotesapi.models.Note;
 import org.springframework.beans.factory.annotation.Autowired;

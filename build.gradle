@@ -20,7 +20,8 @@ repositories {
 
 dependencies {
 	compileOnly 'org.projectlombok:lombok'
-  compile 'com.vividsolutions:jts:1.13'
+  // compile 'com.vividsolutions:jts:1.13'
+  compile 'org.hibernate:hibernate-spatial:5.1.0.Final'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -33,23 +34,11 @@ dependencies {
 	}
 }
 
-task startTestServices(type: Exec) {
-  workingDir '.'
-  commandLine 'docker-compose', '--env-file', '.test.env', 'up', '-d'
-}
-
-task stopTestServices(type: Exec) {
-  workingDir '.'
-  commandLine 'docker-compose', '--env-file', '.test.env', 'down'
-}
-
-task loadEnv(type: Exec) {
-  // TODO: load the env into system properties
-}
-
 test {
 	useJUnitPlatform()
+  systemProperties System.properties
 }
 
-test.dependsOn(startTestServices)
-test.finalizedBy(stopTestServices)
+bootRun {
+  systemProperties System.properties
+}

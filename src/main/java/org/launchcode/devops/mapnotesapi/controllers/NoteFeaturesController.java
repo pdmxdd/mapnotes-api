@@ -1,8 +1,6 @@
 package org.launchcode.devops.mapnotesapi.controllers;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +32,7 @@ public class NoteFeaturesController {
     public ResponseEntity getNoteFeatures(@PathVariable Long noteId) {
         Optional<NoteEntity> optionalNoteEntity = noteData.findById(noteId);
         if(optionalNoteEntity.isEmpty()) {
-            return ResponseEntity.status(400).build();
+            return ResponseEntity.status(404).build();
         }
         NoteEntity noteEntity = optionalNoteEntity.get();
         return ResponseEntity.status(200).body(FeatureCollection.fromNote(noteEntity));
@@ -44,7 +42,7 @@ public class NoteFeaturesController {
     public ResponseEntity putNoteFeatures(@PathVariable Long noteId, @RequestBody FeatureCollection featureCollection) {
         Optional<NoteEntity> optionalNoteEntity = noteData.findById(noteId);
         if(optionalNoteEntity.isEmpty()) {
-            return ResponseEntity.status(400).build();
+            return ResponseEntity.status(404).build();
         }
         NoteEntity noteEntity = optionalNoteEntity.get();
         List<NoteFeatureEntity> noteFeatureEntitiesList = new ArrayList<>();

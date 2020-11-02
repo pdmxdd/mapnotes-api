@@ -43,9 +43,9 @@ run() {
   if [[ "$gradle_exit_status" -ne 0 ]]; then
     if [[ "$env" == 'test' ]]; then
       echo 'tests failed, starting python server for test output'
-      echo 'test output will be available at: http://localhost:6000'
+      echo 'test output will be available at: http://localhost:4000'
       echo 'enter CTRL+C to shutdown the python server'
-      python3 -m http.server -d "$PWD/build/reports/tests/test/" 6000
+      python3 -m http.server -d "$PWD/build/reports/tests/test/" 4000
     else
       echo 'all tests passed!'
     fi

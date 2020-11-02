@@ -1,8 +1,6 @@
 #! /usr/bin/env bash
 
 run_gradle_task() {
-  source "$env_file"
-
   ./gradlew "$gradle_task" \
     -D "MAPNOTES_API_DB_PORT=$MAPNOTES_API_DB_PORT" \
     -D "MAPNOTES_API_DB_HOST=$MAPNOTES_API_DB_HOST" \
@@ -27,6 +25,10 @@ run() {
     exit 1
   fi
 
+  echo "sourcing environment variables from: $env_file"
+  source "$env_file"
+
+
   echo 'starting backing services'
   local compose_args="--env-file $env_file"
   eval docker-compose "$compose_args" up -d
@@ -40,9 +42,10 @@ run() {
   local gradle_exit_status="$?"
   if [[ "$gradle_exit_status" -ne 0 ]]; then
     if [[ "$env" == 'test' ]]; then
-      echo 'tests failed, test output available at http://localhost:4000'
-      echo 'press enter to shut down the backing services and exit'
-      read -n 1
+      echo 'tests failed, starting python server for test output'
+      echo 'test output will be available at: http://localhost:6000'
+      echo 'enter CTRL+C to shutdown the python server'
+      python3 -m http.server -d "$PWD/build/reports/tests/test/" 6000
     else
       echo 'all tests passed!'
     fi

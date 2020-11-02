@@ -49,7 +49,7 @@ public class PostNotesTests {
   }
 
   @Test
-  @DisplayName("[invalid data] POST /notes (NewNote JSON): 400 status")
+  @DisplayName("[invalid data] POST /notes (NewNote JSON): 400 status and body (JSON field errors)")
   public void createNoteInvalid() throws Exception {
     String emptyTitle = "";
     String body = "this is the body";

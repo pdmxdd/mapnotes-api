@@ -34,12 +34,11 @@ public class GetNotesTests {
   @DisplayName("[populated state] GET /notes: a JSON list of Note entities")
   public void getNotesPopulated() throws Exception {
     noteDataTestUtil.createTestNote("some title", "some body");
-    noteDataTestUtil.createTestNote("some other title", "some other body");
 
     mockRequest.perform(MockMvcRequestBuilders.get("/notes")).andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(1))
-        .andExpect(MockMvcResultMatchers.jsonPath("$[*].id").isNumber())
-        .andExpect(MockMvcResultMatchers.jsonPath("$[*].body").isString())
-        .andExpect(MockMvcResultMatchers.jsonPath("$[*].title").isString());
+        .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").isNumber())
+        .andExpect(MockMvcResultMatchers.jsonPath("$[0].body").isString())
+        .andExpect(MockMvcResultMatchers.jsonPath("$[0].title").isString());
   }
 }

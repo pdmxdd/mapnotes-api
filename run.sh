@@ -34,7 +34,7 @@ run() {
   eval docker-compose "$compose_args" up -d
 
   echo 'waiting for docker services to start...'
-  sleep 1.5s
+  sleep 3s
 
   echo "executing gradle task: $gradle_task"
   run_gradle_task

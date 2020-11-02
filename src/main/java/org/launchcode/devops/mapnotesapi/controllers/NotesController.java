@@ -1,6 +1,7 @@
 package org.launchcode.devops.mapnotesapi.controllers;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,5 +45,17 @@ public class NotesController {
     noteData.save(newNote);
 
     return ResponseEntity.status(201).body(OutboundNoteRepresentation.fromNoteEntity(newNote));
+  }
+
+  @GetMapping("/{noteId}")
+  public ResponseEntity<OutboundNoteRepresentation> getNote(@PathVariable long noteId) {
+    Optional<NoteEntity> maybeNote = noteData.findById(noteId);
+    if (maybeNote.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    NoteEntity foundNote = maybeNote.get();
+
+    return ResponseEntity.ok(OutboundNoteRepresentation.fromNoteEntity(foundNote));
   }
 }

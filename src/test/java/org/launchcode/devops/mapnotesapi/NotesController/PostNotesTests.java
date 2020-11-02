@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.launchcode.devops.mapnotesapi.TestUtils.IntegrationTestConfig;
 import org.launchcode.devops.mapnotesapi.TestUtils.NoteDataTestUtil;
-import org.launchcode.devops.mapnotesapi.controllers.NotesController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -64,7 +63,7 @@ public class PostNotesTests {
     mockRequest
         .perform(
             MockMvcRequestBuilders.post("/notes").content(newNoteJsonPayload).contentType(MediaType.APPLICATION_JSON))
-        .andExpect(MockMvcResultMatchers.status().isBadRequest());
+        .andExpect(MockMvcResultMatchers.status().isBadRequest())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.errors.title").exists());
   }
-
 }

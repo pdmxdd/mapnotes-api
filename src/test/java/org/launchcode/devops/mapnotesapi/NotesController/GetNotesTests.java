@@ -1,11 +1,10 @@
-package org.launchcode.devops.mapnotesapi.controllers.Notes;
+package org.launchcode.devops.mapnotesapi.NotesController;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.launchcode.devops.mapnotesapi.IntegrationTestConfig;
-import org.launchcode.devops.mapnotesapi.NoteDataTestUtil;
-import org.launchcode.devops.mapnotesapi.controllers.NotesController;
+import org.launchcode.devops.mapnotesapi.TestUtils.IntegrationTestConfig;
+import org.launchcode.devops.mapnotesapi.TestUtils.NoteDataTestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -27,8 +26,7 @@ public class GetNotesTests {
   @Test
   @DisplayName("[empty state] GET /notes: an empty JSON list")
   public void getNotesEmpty() throws Exception {
-    mockRequest.perform(MockMvcRequestBuilders.get(NotesController.getRootPath()))
-        .andExpect(MockMvcResultMatchers.status().isOk())
+    mockRequest.perform(MockMvcRequestBuilders.get("/notes")).andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(0));
   }
 
@@ -38,8 +36,7 @@ public class GetNotesTests {
     noteDataTestUtil.createTestNote("some title", "some body");
     noteDataTestUtil.createTestNote("some other title", "some other body");
 
-    mockRequest.perform(MockMvcRequestBuilders.get(NotesController.getRootPath()))
-        .andExpect(MockMvcResultMatchers.status().isOk())
+    mockRequest.perform(MockMvcRequestBuilders.get("/notes")).andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(1))
         .andExpect(MockMvcResultMatchers.jsonPath("$[*].id").isNumber())
         .andExpect(MockMvcResultMatchers.jsonPath("$[*].body").isString())

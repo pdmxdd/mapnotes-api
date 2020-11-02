@@ -1,4 +1,4 @@
-package org.launchcode.devops.mapnotesapi.controllers.Notes;
+package org.launchcode.devops.mapnotesapi.NotesController;
 
 import java.util.HashMap;
 
@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.launchcode.devops.mapnotesapi.IntegrationTestConfig;
-import org.launchcode.devops.mapnotesapi.NoteDataTestUtil;
+import org.launchcode.devops.mapnotesapi.TestUtils.IntegrationTestConfig;
+import org.launchcode.devops.mapnotesapi.TestUtils.NoteDataTestUtil;
 import org.launchcode.devops.mapnotesapi.controllers.NotesController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -42,8 +42,7 @@ public class PostNotesTests {
     String newNoteJson = new ObjectMapper().writeValueAsString(newNoteData);
 
     mockRequest
-        .perform(MockMvcRequestBuilders.post(NotesController.getRootPath()).content(newNoteJson)
-            .contentType(MediaType.APPLICATION_JSON))
+        .perform(MockMvcRequestBuilders.post("/notes").content(newNoteJson).contentType(MediaType.APPLICATION_JSON))
         .andExpect(MockMvcResultMatchers.status().isCreated())
         .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNumber())
         .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body))
@@ -62,8 +61,10 @@ public class PostNotesTests {
 
     String newNoteJsonPayload = new ObjectMapper().writeValueAsString(newNoteData);
 
-    mockRequest.perform(MockMvcRequestBuilders.post(NotesController.getRootPath()).content(newNoteJsonPayload)
-        .contentType(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isBadRequest());
+    mockRequest
+        .perform(
+            MockMvcRequestBuilders.post("/notes").content(newNoteJsonPayload).contentType(MediaType.APPLICATION_JSON))
+        .andExpect(MockMvcResultMatchers.status().isBadRequest());
   }
 
 }

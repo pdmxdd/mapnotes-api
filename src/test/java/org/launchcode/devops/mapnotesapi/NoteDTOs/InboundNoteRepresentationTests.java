@@ -1,4 +1,4 @@
-package org.launchcode.devops.mapnotesapi.dtos;
+package org.launchcode.devops.mapnotesapi.NoteDTOs;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

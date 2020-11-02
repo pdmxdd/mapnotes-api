@@ -1,4 +1,4 @@
-package org.launchcode.devops.mapnotesapi;
+package org.launchcode.devops.mapnotesapi.TestUtils;
 
 import org.launchcode.devops.mapnotesapi.data.NoteData;
 import org.launchcode.devops.mapnotesapi.models.Note.NoteEntity;

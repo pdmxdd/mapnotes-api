@@ -1,4 +1,4 @@
-package org.launchcode.devops.mapnotesapi;
+package org.launchcode.devops.mapnotesapi.TestUtils;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -31,4 +31,9 @@ public class NoteFeatureEntity {
   @ManyToOne
   @JoinColumn(name = "note_id", nullable = false)
   private NoteEntity note;
+
+  public NoteFeatureEntity(Geometry geometry) {
+    this.geometry = geometry;
+  }
+
 }

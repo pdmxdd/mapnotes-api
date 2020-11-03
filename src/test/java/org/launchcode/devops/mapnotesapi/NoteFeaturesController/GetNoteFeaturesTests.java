@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.CoordinateSequenceFactory;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.launchcode.devops.mapnotesapi.TestUtils.IntegrationTestConfig;
 import org.launchcode.devops.mapnotesapi.data.NoteData;
-import org.launchcode.devops.mapnotesapi.models.Feature.Feature;
 import org.launchcode.devops.mapnotesapi.models.Feature.NoteFeatureEntity;
 import org.launchcode.devops.mapnotesapi.models.Note.NoteEntity;
 import org.springframework.beans.factory.annotation.Autowired;

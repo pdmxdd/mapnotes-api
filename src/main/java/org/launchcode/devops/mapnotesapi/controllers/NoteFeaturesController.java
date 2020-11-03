@@ -29,7 +29,7 @@ public class NoteFeaturesController {
     NoteData noteData;
 
     @GetMapping
-    public ResponseEntity getNoteFeatures(@PathVariable Long noteId) {
+    public ResponseEntity<Object> getNoteFeatures(@PathVariable Long noteId) {
         Optional<NoteEntity> optionalNoteEntity = noteData.findById(noteId);
         if(optionalNoteEntity.isEmpty()) {
             return ResponseEntity.status(404).build();
@@ -39,7 +39,7 @@ public class NoteFeaturesController {
     }
 
     @PutMapping
-    public ResponseEntity putNoteFeatures(@PathVariable Long noteId, @RequestBody FeatureCollection featureCollection) {
+    public ResponseEntity<Object> putNoteFeatures(@PathVariable Long noteId, @RequestBody FeatureCollection featureCollection) {
         Optional<NoteEntity> optionalNoteEntity = noteData.findById(noteId);
         if(optionalNoteEntity.isEmpty()) {
             return ResponseEntity.status(404).build();

@@ -1,5 +1,6 @@
 package org.launchcode.devops.mapnotesapi.models.Note;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -34,7 +35,7 @@ public class NoteEntity {
   private String title;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "note")
-  private Collection<NoteFeatureEntity> features;
+  private Collection<NoteFeatureEntity> features = new ArrayList<>();
 
   public NoteEntity(String title, String body) {
     this.body = body;
